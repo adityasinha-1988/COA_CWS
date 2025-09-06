@@ -9,23 +9,11 @@ https://adityasinha-1988.github.io/COA_CWS/
 📝 Assignment Overview
 This project is designed to give you a deep, practical understanding of a real-world processor architecture. The assignment is worth a total of 10 marks.
 
-Part
+Part Task Description Marks
 
-Task Description
+Part 1: Architecture Simulation Write and simulate a simple assembly program (Factorial or Fibonacci). 5
 
-Marks
-
-Part 1: Architecture Simulation
-
-Write and simulate a simple assembly program (Factorial or Fibonacci).
-
-5
-
-Part 2: Video Presentation
-
-Create a 7-10 minute video covering the case study and code demonstration.
-
-5
+Part 2: Video Presentation Create a 7-10 minute video covering the case study and code demonstration. 5
 
 🧭 How to Use This Portal
 Follow these simple steps to get started:
