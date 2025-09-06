@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA Case Study & Simulation Assignment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+        .header-glow {
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        .tab-active {
+            background-color: #3b82f6;
+            color: white;
+            border-bottom: 2px solid #2563eb;
+        }
+        .tab-inactive {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        #search-result-card {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <h1 class="text-2xl md:text-4xl font-extrabold text-blue-600 header-glow">Manipal University Jaipur</h1>
+            <p class="text-md md:text-lg text-slate-600 mt-1">School of Computer Science and Engineering</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Assignment Title and Intro -->
+        <section class="text-center fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Computer Organization & Architecture</h2>
+            <p class="mt-2 text-2xl font-semibold text-blue-600">CSE2103: Case Study & Simulation</p>
+            <p class="mt-4 max-w-3xl mx-auto text-slate-600">
+                Welcome, future architects! This assignment is your gateway to understanding the heart of modern computing. You will dissect a processor's design, bring it to life with code, and present your findings. Let's get started!
+            </p>
+            <div class="mt-6 flex justify-center items-center space-x-4 text-lg font-semibold">
+                <span>Total Marks: 10</span>
+                <span class="text-slate-300">|</span>
+                <span>Part 1: Simulation (5 Marks)</span>
+                <span class="text-slate-300">|</span>
+                <span>Part 2: Presentation (5 Marks)</span>
+            </div>
+             <div class="mt-4 text-center">
+                <p class="text-lg font-semibold text-red-600">Submission Deadline: 3rd November, Monday</p>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="my-16 fade-in" style="animation-delay: 0.2s;">
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-xl">
+                 <h3 class="text-2xl font-bold text-center mb-4">Find Your Assignment</h3>
+                 <div class="flex flex-col sm:flex-row gap-4">
+                     <input type="text" id="search-input" placeholder="Enter your registration number..." class="flex-grow p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                     <button id="clear-search-btn" class="px-6 py-3 bg-slate-500 text-white font-semibold rounded-md hover:bg-slate-600 transition">Clear</button>
+                 </div>
+                 <div id="search-result-container" class="mt-4">
+                    <!-- Search results will be displayed here -->
+                 </div>
+            </div>
+        </section>
+
+
+        <!-- Assignment Details Tabs -->
+        <section class="my-16 fade-in" style="animation-delay: 0.4s;">
+            <div class="w-full max-w-5xl mx-auto">
+                <div class="flex border-b border-gray-300">
+                    <button class="tab-btn tab-active flex-1 py-3 px-4 font-semibold rounded-t-lg transition" data-tab="part1">
+                        Part 1: Architecture Simulation
+                    </button>
+                    <button class="tab-btn tab-inactive flex-1 py-3 px-4 font-semibold rounded-t-lg transition" data-tab="part2">
+                        Part 2: Video Presentation
+                    </button>
+                </div>
+                
+                <div class="bg-white p-6 md:p-8 rounded-b-lg shadow-xl">
+                    <!-- Part 1 Content -->
+                    <div id="part1" class="tab-content">
+                        <h3 class="text-2xl font-bold mb-4">Simulation Task (5 Marks)</h3>
+                        <p class="text-slate-600 mb-6">Write a simple assembly program for your assigned architecture to either calculate the factorial of a number (e.g., 8!) or generate the first 10 numbers of the Fibonacci sequence. Your well-commented code should demonstrate basic arithmetic, data movement, and control flow instructions.</p>
+                        
+                        <h4 class="text-xl font-bold mb-4">Recommended Simulators</h4>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                           <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="http://courses.missouristate.edu/kenvollmar/mars/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">MARS</a> / 
+                                    <a href="https://github.com/TheThirdOne/rars" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">RARS</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">The go-to IDEs for MIPS and RISC-V assembly. User-friendly and perfect for educational purposes.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://www.qemu.org/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">QEMU</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">A powerful machine emulator for a wide variety of architectures like x86, ARM, PowerPC, and SPARC.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="http://simh.trailing-edge.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">SimH</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">A highly portable simulator for historical architectures like the DEC PDP-11, VAX, and IBM System/360.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://www.gem5.org/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">GEM5</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">A research-grade simulator for x86, ARM, and RISC-V, ideal for detailed performance analysis.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://bochs.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">Bochs</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">An open-source emulator for x86 and x86-64, great for understanding low-level hardware interactions.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://www.keil.com/mdk5/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">Keil MDK</a> / 
+                                    <a href="https://www.iar.com/products/iar-embedded-workbench/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">IAR</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">Industry-standard toolchains for microcontrollers (ARM Cortex-M, 8051) with powerful simulators.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 2 Content -->
+                    <div id="part2" class="tab-content hidden">
+                        <h3 class="text-2xl font-bold mb-4">Presentation Task (5 Marks)</h3>
+                        <p class="text-slate-600 mb-6">Prepare and record a <strong>7-10 minute video presentation</strong> summarizing your case study of the assigned architecture. Your presentation should be clear, concise, and cover the key points listed below.</p>
+                        
+                        <h4 class="text-xl font-bold mb-4">Guiding Questions</h4>
+                        <div id="accordion-container" class="space-y-2">
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>1. Architecture Overview</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">What are the key features and design principles (RISC, CISC, VLIW, etc.)? What were its target applications?</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>2. Instruction Set Architecture (ISA)</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Briefly describe instruction formats and addressing modes. Highlight one or two unique or interesting instructions.</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>3. Datapath & Pipelining</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Provide a simplified datapath diagram. Describe its pipeline structure and any advanced features like superscalar or out-of-order execution.</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>4. Memory Hierarchy</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">How is the cache and memory system organized? Are there any special features for memory optimization?</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>5. Specialized Features & Parallelism</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Does it support multicore processing? Does it have specialized instructions (e.g., SIMD, AI, virtualization)?</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>6. Historical Significance & Comparison</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">What is its historical importance? Briefly compare it to one other architecture in terms of performance, power, or market.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-slate-500">
+            <p>&copy; 2024 Manipal University Jaipur - Department of Computer Science and Engineering</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // THE FULL, COMPLETE, AND CORRECT LIST OF ALL 197 STUDENTS
+             const studentData = [
+                [
+  {
+    "Sno": 1,
+    "Registration No": 2427030004,
+    "Student Name": "MANAN CHOUDHARY",
+    "Team Member": "Pratham Jain",
+    "Team Member Registration number": 2427030728,
+    "Assigned Processor": "IBM POWER Architecture"
+  },
+  {
+    "Sno": 2,
+    "Registration No": 2427030024,
+    "Student Name": "KAVYA JOSHI",
+    "Team Member": "Akshit Makhija",
+    "Team Member Registration number": 2427030065,
+    "Assigned Processor": "IBM POWER10"
+  },
+  {
+    "Sno": 3,
+    "Registration No": 2427030063,
+    "Student Name": "SHAURYA TIWARI",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Blackfin (DSP)"
+  },
+  {
+    "Sno": 4,
+    "Registration No": 2427030065,
+    "Student Name": "AKSHIT MAKHIJA",
+    "Team Member": "Kavya Joshi",
+    "Team Member Registration number": 2427030024,
+    "Assigned Processor": "Zilog Z80"
+  },
+  {
+    "Sno": 5,
+    "Registration No": 2427030068,
+    "Student Name": "AYUSHMAN VAISH",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Intel 8051 (microcontroller)"
+  },
+  {
+    "Sno": 6,
+    "Registration No": 2427030096,
+    "Student Name": "KINJAL SINGH",
+    "Team Member": "Yalamaddi Sai Nainitha",
+    "Team Member Registration number": 2427030125,
+    "Assigned Processor": "TI MSP430 (microcontroller)"
+  },
+  {
+    "Sno": 7,
+    "Registration No": 2427030099,
+    "Student Name": "ASTHA SINGH",
+    "Team Member": "Gauri Arora",
+    "Team Member Registration number": 2427030261,
+    "Assigned Processor": "Intel Itanium (IA-64)"
+  },
+  {
+    "Sno": 8,
+    "Registration No": 2427030101,
+    "Student Name": "STUTI AGRAWAL",
+    "Team Member": "Suyash Pandey",
+    "Team Member Registration number": 2427030534,
+    "Assigned Processor": "PowerPC"
+  },
+  {
+    "Sno": 9,
+    "Registration No": 2427030125,
+    "Student Name": "YALAMADDI SAI NAINITHA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "ARMv8"
+  },
+  {
+    "Sno": 10,
+    "Registration No": 2427030209,
+    "Student Name": "UTKARSH UMANG",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "NVIDIA Turing (GPU)"
+  },
+  {
+    "Sno": 11,
+    "Registration No": 2427030250,
+    "Student Name": "PAWNI KHURANA",
+    "Team Member": "Vanshika Khurana",
+    "Team Member Registration number": 2427030252,
+    "Assigned Processor": "CEVA DSPs"
+  },
+  {
+    "Sno": 12,
+    "Registration No": 2427030252,
+    "Student Name": "VANSHIKA KHURANA",
+    "Team Member": "Pawni Khurana",
+    "Team Member Registration number": 2427030250,
+    "Assigned Processor": "MIPS32 / MIPS64"
+  },
+  {
+    "Sno": 13,
+    "Registration No": 2427030261,
+    "Student Name": "GAURI ARORA",
+    "Team Member": "Astha Singh",
+    "Team Member Registration number": 2427030099,
+    "Assigned Processor": "HP PA-RISC"
+  },
+  {
+    "Sno": 14,
+    "Registration No": 2427030276,
+    "Student Name": "SHLOK AGARWAL",
+    "Team Member": "Hansraj Jaiswal",
+    "Team Member Registration number": 2427030428,
+    "Assigned Processor": "Motorola 88000 (RISC)"
+  },
+  {
+    "Sno": 15,
+    "Registration No": 2427030282,
+    "Student Name": "MESHWA SUNIL PATEL",
+    "Team Member": "Leisha Mehtani",
+    "Team Member Registration number": 2427030297,
+    "Assigned Processor": "Microchip PIC"
+  },
+  {
+    "Sno": 16,
+    "Registration No": 2427030283,
+    "Student Name": "PARIGNA BHAVIK RATHOD",
+    "Team Member": "Kappa Geervan",
+    "Team Member Registration number": 2427030323,
+    "Assigned Processor": "Intel Pentium Pro (P6)"
+  },
+  {
+    "Sno": 17,
+    "Registration No": 2427030295,
+    "Student Name": "KRITI SARAOGI",
+    "Team Member": "Nandika Garg",
+    "Team Member Registration number": 2427030369,
+    "Assigned Processor": "Renesas RX"
+  },
+  {
+    "Sno": 18,
+    "Registration No": 2427030297,
+    "Student Name": "LEISHA MEHTANI",
+    "Team Member": "Meshwa Sunil Patel",
+    "Team Member Registration number": 2427030282,
+    "Assigned Processor": "Sunway SW26010"
+  },
+  {
+    "Sno": 19,
+    "Registration No": 2427030323,
+    "Student Name": "KAPPA GEERVAN",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "x86 (Intel and AMD processors)"
+  },
+  {
+    "Sno": 20,
+    "Registration No": 2427030332,
+    "Student Name": "ARYAN GOYAL",
+    "Team Member": "Aryan Rajguru",
+    "Team Member Registration number": 2427030355,
+    "Assigned Processor": "Intel Core (Skylake)"
+  },
+  {
+    "Sno": 21,
+    "Registration No": 2427030369,
+    "Student Name": "NANDIKA GARG",
+    "Team Member": "Kriti Saraogi",
+    "Team Member Registration number": 2427030295,
+    "Assigned Processor": "Centaur CHA (x86 + AI)"
+  },
+  {
+    "Sno": 22,
+    "Registration No": 2427030373,
+    "Student Name": "DEEKSHA BIYANI",
+    "Team Member": "Samkit Jain",
+    "Team Member Registration number": 2427030362,
+    "Assigned Processor": "Oracle SPARC M7"
+  },
+  {
+    "Sno": 23,
+    "Registration No": 2427030378,
+    "Student Name": "RIYA KHANDELWAL",
+    "Team Member": "Mudit Purswani",
+    "Team Member Registration number": 2427030449,
+    "Assigned Processor": "NEC SX-9 (vector supercomputer)"
+  },
+  {
+    "Sno": 24,
+    "Registration No": 2427030395,
+    "Student Name": "SHREYAS SRIVASTAVA",
+    "Team Member": "Kushagra kaushik",
+    "Team Member Registration number": 2427030743,
+    "Assigned Processor": "Transmeta Crusoe"
+  },
+  {
+    "Sno": 25,
+    "Registration No": 2427030424,
+    "Student Name": "VEDANT MISRA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "NVIDIA CUDA (GPU)"
+  },
+  {
+    "Sno": 26,
+    "Registration No": 2427030428,
+    "Student Name": "HANSRAJ JAISWAL",
+    "Team Member": "Shlok Agarwal",
+    "Team Member Registration number": 2427030276,
+    "Assigned Processor": "Graphcore IPU"
+  },
+  {
+    "Sno": 27,
+    "Registration No": 2427030441,
+    "Student Name": "ANGAD SINGH",
+    "Team Member": "Devank Agarwal",
+    "Team Member Registration number": 2427030447,
+    "Assigned Processor": "MOS Technology 6502"
+  },
+  {
+    "Sno": 28,
+    "Registration No": 2427030444,
+    "Student Name": "SANVI JAIN",
+    "Team Member": "Payal Yadav",
+    "Team Member Registration number": 2427030415,
+    "Assigned Processor": "Atmel AVR (microcontroller)"
+  },
+  {
+    "Sno": 29,
+    "Registration No": 2427030449,
+    "Student Name": "MUDIT PURSWANI",
+    "Team Member": "Riya Khandelwal",
+    "Team Member Registration number": 2427030378,
+    "Assigned Processor": "ARM Cortex-R series"
+  },
+  {
+    "Sno": 30,
+    "Registration No": 2427030450,
+    "Student Name": "PLAKSHA THAKUR",
+    "Team Member": "Simran Devkumar",
+    "Team Member Registration number": 2427030376,
+    "Assigned Processor": "IBM z/Architecture"
+  },
+  {
+    "Sno": 31,
+    "Registration No": 2427030451,
+    "Student Name": "SMITA YADAV",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Sun UltraSPARC"
+  },
+  {
+    "Sno": 32,
+    "Registration No": 2427030459,
+    "Student Name": "ARNAV DUA",
+    "Team Member": "-",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "ARM Neoverse"
+  },
+  {
+    "Sno": 33,
+    "Registration No": 2427030480,
+    "Student Name": "ADITYA GUPTA",
+    "Team Member": "Aakarsh Srivastava",
+    "Team Member Registration number": 2427030482,
+    "Assigned Processor": "SPARC"
+  },
+  {
+    "Sno": 34,
+    "Registration No": 2427030482,
+    "Student Name": "AAKARSH SRIVASTAVA",
+    "Team Member": "Aditya Gupta",
+    "Team Member Registration number": 2427030480,
+    "Assigned Processor": "AMD Ryzen (Zen)"
+  },
+  {
+    "Sno": 35,
+    "Registration No": 2427030513,
+    "Student Name": "AHANA BAJPAI",
+    "Team Member": "Pragya Mridu",
+    "Team Member Registration number": 2427030553,
+    "Assigned Processor": "Cray-1"
+  },
+  {
+    "Sno": 36,
+    "Registration No": 2427030530,
+    "Student Name": "VIDUSHI SINGHANIA",
+    "Team Member": "Archit Jaiswal",
+    "Team Member Registration number": 2427030841,
+    "Assigned Processor": "RISC-V (RV64GC)"
+  },
+  {
+    "Sno": 37,
+    "Registration No": 2427030534,
+    "Student Name": "SUYASH PANDEY",
+    "Team Member": "Stuti Agrawal",
+    "Team Member Registration number": 2427030101,
+    "Assigned Processor": "AMD RDNA (GPU)"
+  },
+  {
+    "Sno": 38,
+    "Registration No": 2427030539,
+    "Student Name": "NINAD GUPTA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "DEC Alpha"
+  },
+  {
+    "Sno": 39,
+    "Registration No": 2427030546,
+    "Student Name": "CHAITANYA KHOKHAR",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Elbrus 2000"
+  },
+  {
+    "Sno": 40,
+    "Registration No": 2427030557,
+    "Student Name": "VISHWAS DHANVADAN PATEL",
+    "Team Member": "Abhishek Singh",
+    "Team Member Registration number": 2427030569,
+    "Assigned Processor": "Qualcomm Snapdragon (mobile)"
+  },
+  {
+    "Sno": 41,
+    "Registration No": 2427030569,
+    "Student Name": "ABHISHEK SINGH",
+    "Team Member": "Vishwas Patel",
+    "Team Member Registration number": 2427030557,
+    "Assigned Processor": "IBM System/360"
+  },
+  {
+    "Sno": 42,
+    "Registration No": 2427030598,
+    "Student Name": "AMIYA SHARMA",
+    "Team Member": "Ishanika Singh ,Ansh Mishra ,Jenit Sutaria ",
+    "Team Member Registration number": 24270306392427000000000000000,
+    "Assigned Processor": "SiFive Freedom (RISC-V)"
+  },
+  {
+    "Sno": 43,
+    "Registration No": 2427030608,
+    "Student Name": "JENIT CHINTAN SUTARIA",
+    "Team Member": "Ansh Mishra, Ishanika Singh, Amiya Sharma",
+    "Team Member Registration number": 24270306402427000000000000000,
+    "Assigned Processor": "Digital PDP-11"
+  },
+  {
+    "Sno": 44,
+    "Registration No": 2427030626,
+    "Student Name": "PRIYAL KHANDAL",
+    "Team Member": "Ajay Choudhary",
+    "Team Member Registration number": 2427030616,
+    "Assigned Processor": "Intel Alder Lake (hybrid)"
+  },
+  {
+    "Sno": 45,
+    "Registration No": 2427030639,
+    "Student Name": "ISHANIKA SINGH",
+    "Team Member": "Amiya sharma,jenit,Ansh",
+    "Team Member Registration number": 24270305982427000000000000000,
+    "Assigned Processor": "AMD Epyc (server)"
+  },
+  {
+    "Sno": 46,
+    "Registration No": 2427030640,
+    "Student Name": "ANSH MISHRA",
+    "Team Member": "Jenit sutaria,amiya sharma,ishanika",
+    "Team Member Registration number": 24270306082427000000000000000,
+    "Assigned Processor": "Intel Xeon Phi (Many-core)"
+  },
+  {
+    "Sno": 47,
+    "Registration No": 2427030650,
+    "Student Name": "DIGVIJAY SINGH GILL",
+    "Team Member": "Siddhant dahiya",
+    "Team Member Registration number": 2427030403,
+    "Assigned Processor": "Motorola 68000"
+  },
+  {
+    "Sno": 48,
+    "Registration No": 2427030684,
+    "Student Name": "AASTHA DHOUNDIYAL",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Intel 4004"
+  },
+  {
+    "Sno": 49,
+    "Registration No": 2427030713,
+    "Student Name": "ANVI SINGLA",
+    "Team Member": "Rashi Agarwal",
+    "Team Member Registration number": 2427030734,
+    "Assigned Processor": "Andes Technology RISC-V Cores"
+  },
+  {
+    "Sno": 50,
+    "Registration No": 2427030725,
+    "Student Name": "HARSHA MAHESHWARI",
+    "Team Member": "NA",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "Unisys ClearPath MCP"
+  },
+  {
+    "Sno": 51,
+    "Registration No": 2427030728,
+    "Student Name": "PRATHAM JAIN",
+    "Team Member": "Manan Choudhary",
+    "Team Member Registration number": 2427030004,
+    "Assigned Processor": "ARM Cortex-M series"
+  },
+  {
+    "Sno": 52,
+    "Registration No": 2427030734,
+    "Student Name": "RASHI AGARWAL",
+    "Team Member": "Anvi Singla",
+    "Team Member Registration number": 2427030713,
+    "Assigned Processor": "AMD K6/K7"
+  },
+  {
+    "Sno": 53,
+    "Registration No": 2427030743,
+    "Student Name": "KUSHAGRA KAUSHIK",
+    "Team Member": "Shreyas Srivastava",
+    "Team Member Registration number": 2427030395,
+    "Assigned Processor": "Apple M1/M2 (ARM-based SoC)"
+  },
+  {
+    "Sno": 54,
+    "Registration No": 2427030749,
+    "Student Name": "THOUDAM DEBABRATA",
+    "Team Member": "Saksham Jain",
+    "Team Member Registration number": 2427030737,
+    "Assigned Processor": "AMD Zen 4 (Ryzen 7000)"
+  },
+  {
+    "Sno": 55,
+    "Registration No": 2427030752,
+    "Student Name": "JANVI SINGH",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Cerebras WSE"
+  },
+  {
+    "Sno": 56,
+    "Registration No": 2427030770,
+    "Student Name": "BHAVYA VASHISTHA",
+    "Team Member": "Tanisha Jain",
+    "Team Member Registration number": 2427030775,
+    "Assigned Processor": "Adapteva Epiphany (Many-core)"
+  },
+  {
+    "Sno": 57,
+    "Registration No": 2427030773,
+    "Student Name": "SIDDHARTH JHA",
+    "Team Member": "Utkarsh Mehra",
+    "Team Member Registration number": 2427030806,
+    "Assigned Processor": "Mill architecture"
+  },
+  {
+    "Sno": 58,
+    "Registration No": 2427030775,
+    "Student Name": "TANISHA JAIN",
+    "Team Member": "Bhavya Vashishta",
+    "Team Member Registration number": 2427030770,
+    "Assigned Processor": "Synopsys ARC Processors"
+  },
+  {
+    "Sno": 59,
+    "Registration No": 2427030783,
+    "Student Name": "OM GHANSHYAM VANWARI",
+    "Team Member": "N/A",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "ARM Mali (GPU)"
+  },
+  {
+    "Sno": 60,
+    "Registration No": 2427030804,
+    "Student Name": "SAMARTHYA RAGHUVANSHI",
+    "Team Member": "NULL",
+    "Team Member Registration number": 242703804,
+    "Assigned Processor": "Fujitsu A64FX"
+  },
+  {
+    "Sno": 61,
+    "Registration No": 2427030806,
+    "Student Name": "UTKARSH MEHRA",
+    "Team Member": "Siddharth Jha",
+    "Team Member Registration number": 2427030773,
+    "Assigned Processor": "Google TPU"
+  },
+  {
+    "Sno": 62,
+    "Registration No": 2427030836,
+    "Student Name": "SAKSHAM GUPTA",
+    "Team Member": "Sharad Yadav",
+    "Team Member Registration number": 2427030839,
+    "Assigned Processor": "NVIDIA Volta (GPU)"
+  },
+  {
+    "Sno": 63,
+    "Registration No": 2427030839,
+    "Student Name": "SHARAD YADAV",
+    "Team Member": "Saksham Gupta",
+    "Team Member Registration number": 2427030836,
+    "Assigned Processor": "VAX-11"
+  },
+  {
+    "Sno": 64,
+    "Registration No": 2427030841,
+    "Student Name": "ARCHIT JAISWAL",
+    "Team Member": "Vidushi Singhania",
+    "Team Member Registration number": 2427030530,
+    "Assigned Processor": "Imagination PowerVR (GPU)"
+  },
+  {
+    "Sno": 65,
+    "Registration No": 2427030021,
+    "Student Name": "PARNIKA JOSHI",
+    "Team Member": "Pawni Suneja",
+    "Team Member Registration number": 2427030560,
+    "Assigned Processor": "IBM POWER Architecture"
+  },
+  {
+    "Sno": 66,
+    "Registration No": 2427030038,
+    "Student Name": "ISHIT KAUSHIK",
+    "Team Member": "VARDAAN THAKUR",
+    "Team Member Registration number": 2427030052,
+    "Assigned Processor": "IBM POWER10"
+  },
+  {
+    "Sno": 67,
+    "Registration No": 2427030052,
+    "Student Name": "VARDAAN THAKUR",
+    "Team Member": "ISHIT KAUSHIK",
+    "Team Member Registration number": 2427030038,
+    "Assigned Processor": "Blackfin (DSP)"
+  },
+  {
+    "Sno": 68,
+    "Registration No": 2427030069,
+    "Student Name": "HARDIK TOMAR",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Zilog Z80"
+  },
+  {
+    "Sno": 69,
+    "Registration No": 2427030073,
+    "Student Name": "NIPUN TYAGI",
+    "Team Member": "Utkarsh Singh",
+    "Team Member Registration number": 2427030432,
+    "Assigned Processor": "Intel 8051 (microcontroller)"
+  },
+  {
+    "Sno": 70,
+    "Registration No": 2427030078,
+    "Student Name": "KUSHAGRA SINGH",
+    "Team Member": "Priyanshu Raj",
+    "Team Member Registration number": 2427030305,
+    "Assigned Processor": "TI MSP430 (microcontroller)"
+  },
+  {
+    "Sno": 71,
+    "Registration No": 2427030119,
+    "Student Name": "VOBILISETTI AKHILESH",
+    "Team Member": "MUKESH KUMAR CHOWDHARY",
+    "Team Member Registration number": 2427030520,
+    "Assigned Processor": "Intel Itanium (IA-64)"
+  },
+  {
+    "Sno": 72,
+    "Registration No": 2427030122,
+    "Student Name": "KIRTAN KUMAR SANGHI",
+    "Team Member": "Tanisha PankajKumar Hirpara",
+    "Team Member Registration number": 2427030586,
+    "Assigned Processor": "PowerPC"
+  },
+  {
+    "Sno": 73,
+    "Registration No": 2427030128,
+    "Student Name": "ABISHRI V K",
+    "Team Member": "Shriya Desai",
+    "Team Member Registration number": 2427030171,
+    "Assigned Processor": "ARMv8"
+  },
+  {
+    "Sno": 74,
+    "Registration No": 2427030131,
+    "Student Name": "JASMAN SINGH",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "NVIDIA Turing (GPU)"
+  },
+  {
+    "Sno": 75,
+    "Registration No": 2427030132,
+    "Student Name": "TAPISH THAKUR",
+    "Team Member": "Jasmann Singh",
+    "Team Member Registration number": 2427030131,
+    "Assigned Processor": "CEVA DSPs"
+  },
+  {
+    "Sno": 76,
+    "Registration No": 2427030137,
+    "Student Name": "SWOYAM KUMAR BEHERA",
+    "Team Member": "Na",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "MIPS32 / MIPS64"
+  },
+  {
+    "Sno": 77,
+    "Registration No": 2427030149,
+    "Student Name": "SARTHAK ROUTRAY",
+    "Team Member": "Om Wattamwar",
+    "Team Member Registration number": 2427030153,
+    "Assigned Processor": "HP PA-RISC"
+  },
+  {
+    "Sno": 78,
+    "Registration No": 2427030153,
+    "Student Name": "OM WATTAMWAR",
+    "Team Member": "Sarthak Routray",
+    "Team Member Registration number": 2427030149,
+    "Assigned Processor": "Motorola 88000 (RISC)"
+  },
+  {
+    "Sno": 79,
+    "Registration No": 2427030171,
+    "Student Name": "SHRIYA DESAI",
+    "Team Member": "Abishri V K",
+    "Team Member Registration number": 2427030128,
+    "Assigned Processor": "Microchip PIC"
+  },
+  {
+    "Sno": 80,
+    "Registration No": 2427030212,
+    "Student Name": "ADITYA SINGH",
+    "Team Member": "Siddhesh Singh Parmar",
+    "Team Member Registration number": 2427030221,
+    "Assigned Processor": "Intel Pentium Pro (P6)"
+  },
+  {
+    "Sno": 81,
+    "Registration No": 2427030215,
+    "Student Name": "DISHA CHOPRA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Renesas RX"
+  },
+  {
+    "Sno": 82,
+    "Registration No": 2427030221,
+    "Student Name": "Siddhesh Singh Parmar",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Sunway SW26010"
+  },
+  {
+    "Sno": 83,
+    "Registration No": 2427030234,
+    "Student Name": "SHREYANSH GERA",
+    "Team Member": "Atharv Sharma",
+    "Team Member Registration number": 2427030234,
+    "Assigned Processor": "x86 (Intel and AMD processors)"
+  },
+  {
+    "Sno": 84,
+    "Registration No": 2427030271,
+    "Student Name": "RIYANSH MONAL SHAH",
+    "Team Member": "Jinay shah",
+    "Team Member Registration number": 2427030414,
+    "Assigned Processor": "Intel Core (Skylake)"
+  },
+  {
+    "Sno": 85,
+    "Registration No": 2427030275,
+    "Student Name": "ANSHUMAN SINGH",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Centaur CHA (x86 + AI)"
+  },
+  {
+    "Sno": 86,
+    "Registration No": 2427030288,
+    "Student Name": "TIRTH KAMLESHSINH CHAUHAN",
+    "Team Member": "Archit Singh",
+    "Team Member Registration number": 2427030301,
+    "Assigned Processor": "Oracle SPARC M7"
+  },
+  {
+    "Sno": 87,
+    "Registration No": 2427030301,
+    "Student Name": "ARCHIT SINGH",
+    "Team Member": "TIRTH KAMLESH CHAUHAN",
+    "Team Member Registration number": 2427030288,
+    "Assigned Processor": "NEC SX-9 (vector supercomputer)"
+  },
+  {
+    "Sno": 88,
+    "Registration No": 2427030324,
+    "Student Name": "SYED SANAULLA BASHA",
+    "Team Member": "Karan Singh",
+    "Team Member Registration number": 2427030358,
+    "Assigned Processor": "Transmeta Crusoe"
+  },
+  {
+    "Sno": 89,
+    "Registration No": 2427030354,
+    "Student Name": "VINAYAK",
+    "Team Member": "Navyansh Kesarwani",
+    "Team Member Registration number": 2427030652,
+    "Assigned Processor": "NVIDIA CUDA (GPU)"
+  },
+  {
+    "Sno": 90,
+    "Registration No": 2427030358,
+    "Student Name": "KARAN SINGH",
+    "Team Member": "Syed Sanaulla",
+    "Team Member Registration number": 2427030324,
+    "Assigned Processor": "Graphcore IPU"
+  },
+  {
+    "Sno": 91,
+    "Registration No": 2427030362,
+    "Student Name": "SAMKIT JAIN",
+    "Team Member": "Deeksha Biyani",
+    "Team Member Registration number": 2427030373,
+    "Assigned Processor": "MOS Technology 6502"
+  },
+  {
+    "Sno": 92,
+    "Registration No": 2427030403,
+    "Student Name": "SIDDHANT DAHIYA",
+    "Team Member": "Digvijay gill",
+    "Team Member Registration number": 2427030650,
+    "Assigned Processor": "Atmel AVR (microcontroller)"
+  },
+  {
+    "Sno": 93,
+    "Registration No": 2427030407,
+    "Student Name": "PRABAL PRATAP SINGH",
+    "Team Member": "Sidhant Daiya",
+    "Team Member Registration number": 2427030403,
+    "Assigned Processor": "ARM Cortex-R series"
+  },
+  {
+    "Sno": 94,
+    "Registration No": 2427030414,
+    "Student Name": "JINAY TUSHAR SHAH",
+    "Team Member": "Riyansh shah",
+    "Team Member Registration number": 2427030271,
+    "Assigned Processor": "IBM z/Architecture"
+  },
+  {
+    "Sno": 95,
+    "Registration No": 2427030432,
+    "Student Name": "UTKARSH SINGH",
+    "Team Member": "Nipun Tyagi",
+    "Team Member Registration number": 2427030073,
+    "Assigned Processor": "Sun UltraSPARC"
+  },
+  {
+    "Sno": 96,
+    "Registration No": 2427030455,
+    "Student Name": "BHAVYA YADAV",
+    "Team Member": "Shivam Kumar",
+    "Team Member Registration number": 2427030210,
+    "Assigned Processor": "ARM Neoverse"
+  },
+  {
+    "Sno": 97,
+    "Registration No": 2427030465,
+    "Student Name": "AKSHIT RAJ",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "SPARC"
+  },
+  {
+    "Sno": 98,
+    "Registration No": 2427030467,
+    "Student Name": "KAVYA MITTAL",
+    "Team Member": "Aanya Singh Saini",
+    "Team Member Registration number": 2427030485,
+    "Assigned Processor": "AMD Ryzen (Zen)"
+  },
+  {
+    "Sno": 99,
+    "Registration No": 2427030473,
+    "Student Name": "SHORYA GOYAL",
+    "Team Member": "Kritin Singh",
+    "Team Member Registration number": 2427030788,
+    "Assigned Processor": "Cray-1"
+  },
+  {
+    "Sno": 100,
+    "Registration No": 2427030485,
+    "Student Name": "AANYA SINGH SAINI",
+    "Team Member": "Kavya mittal",
+    "Team Member Registration number": 2427030467,
+    "Assigned Processor": "RISC-V (RV64GC)"
+  },
+  {
+    "Sno": 101,
+    "Registration No": 2427030487,
+    "Student Name": "BHANI KAUR",
+    "Team Member": "Sharanya Kumar",
+    "Team Member Registration number": 2427030506,
+    "Assigned Processor": "AMD RDNA (GPU)"
+  },
+  {
+    "Sno": 102,
+    "Registration No": 2427030506,
+    "Student Name": "SHARANYA KUMAR",
+    "Team Member": "Bhani Kaur",
+    "Team Member Registration number": 2427030487,
+    "Assigned Processor": "DEC Alpha"
+  },
+  {
+    "Sno": 103,
+    "Registration No": 2427030515,
+    "Student Name": "GAUTAM GIRIRAJ SHUKLA",
+    "Team Member": "Gautam Sahu",
+    "Team Member Registration number": 2427030540,
+    "Assigned Processor": "Elbrus 2000"
+  },
+  {
+    "Sno": 104,
+    "Registration No": 2427030520,
+    "Student Name": "MUKESH KUMAR CHOWDHARY",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Qualcomm Snapdragon (mobile)"
+  },
+  {
+    "Sno": 105,
+    "Registration No": 2427030521,
+    "Student Name": "CHHOTU",
+    "Team Member": "NA",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "IBM System/360"
+  },
+  {
+    "Sno": 106,
+    "Registration No": 2427030527,
+    "Student Name": "ATHARV SHARMA",
+    "Team Member": "Shreyansh Gera",
+    "Team Member Registration number": 2427030234,
+    "Assigned Processor": "SiFive Freedom (RISC-V)"
+  },
+  {
+    "Sno": 107,
+    "Registration No": 2427030560,
+    "Student Name": "PAWNI SUNEJA",
+    "Team Member": "Parnika",
+    "Team Member Registration number": 2427030021,
+    "Assigned Processor": "Digital PDP-11"
+  },
+  {
+    "Sno": 108,
+    "Registration No": 2427030572,
+    "Student Name": "LUVYA TIWARI",
+    "Team Member": "Sheersha Saini",
+    "Team Member Registration number": 2427030582,
+    "Assigned Processor": "Intel Alder Lake (hybrid)"
+  },
+  {
+    "Sno": 109,
+    "Registration No": 2427030582,
+    "Student Name": "SHEERSHA SAINI",
+    "Team Member": "Luvya Tiwari",
+    "Team Member Registration number": 2427030572,
+    "Assigned Processor": "AMD Epyc (server)"
+  },
+  {
+    "Sno": 110,
+    "Registration No": 2427030586,
+    "Student Name": "TANISHA PANKAJKUMAR HIRPARA",
+    "Team Member": "Kirtan Kumar Sanghi",
+    "Team Member Registration number": 2427030122,
+    "Assigned Processor": "Intel Xeon Phi (Many-core)"
+  },
+  {
+    "Sno": 111,
+    "Registration No": 2427030587,
+    "Student Name": "SOURITRA MUKHERJEE",
+    "Team Member": "Aryan raj",
+    "Team Member Registration number": 2427030590,
+    "Assigned Processor": "Motorola 68000"
+  },
+  {
+    "Sno": 112,
+    "Registration No": 2427030616,
+    "Student Name": "AJAY CHOUDHARY",
+    "Team Member": "Priyal Khandal",
+    "Team Member Registration number": 2427030626,
+    "Assigned Processor": "Intel 4004"
+  },
+  {
+    "Sno": 113,
+    "Registration No": 2427030623,
+    "Student Name": "REHAN KHAN",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Andes Technology RISC-V Cores"
+  },
+  {
+    "Sno": 114,
+    "Registration No": 2427030625,
+    "Student Name": "SHOUMIK KUMAR",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Unisys ClearPath MCP"
+  },
+  {
+    "Sno": 115,
+    "Registration No": 2427030637,
+    "Student Name": "SUBHROJIT MOHANTY",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "ARM Cortex-M series"
+  },
+  {
+    "Sno": 116,
+    "Registration No": 2427030652,
+    "Student Name": "NAVYANSH KESARWANI",
+    "Team Member": "Vinayak",
+    "Team Member Registration number": 2427030354,
+    "Assigned Processor": "AMD K6/K7"
+  },
+  {
+    "Sno": 117,
+    "Registration No": 2427030665,
+    "Student Name": "HARSHIT ARYA",
+    "Team Member": "Harsh Gupta",
+    "Team Member Registration number": 2427030680,
+    "Assigned Processor": "Apple M1/M2 (ARM-based SoC)"
+  },
+  {
+    "Sno": 118,
+    "Registration No": 2427030667,
+    "Student Name": "AMRITANSH SRIVASTAVA",
+    "Team Member": "Anvi Tiwari",
+    "Team Member Registration number": 2427030706,
+    "Assigned Processor": "AMD Zen 4 (Ryzen 7000)"
+  },
+  {
+    "Sno": 119,
+    "Registration No": 2427030688,
+    "Student Name": "ANGAD TYAGI",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Cerebras WSE"
+  },
+  {
+    "Sno": 120,
+    "Registration No": 2427030705,
+    "Student Name": "PRATHAM JAIN",
+    "Team Member": "Manas Srivastava",
+    "Team Member Registration number": 2427030707,
+    "Assigned Processor": "Adapteva Epiphany (Many-core)"
+  },
+  {
+    "Sno": 121,
+    "Registration No": 2427030707,
+    "Student Name": "MANAS SRIVASTAVA",
+    "Team Member": "Pratham jain",
+    "Team Member Registration number": 2427030705,
+    "Assigned Processor": "Mill architecture"
+  },
+  {
+    "Sno": 122,
+    "Registration No": 2427030737,
+    "Student Name": "SAKSHAM JAIN",
+    "Team Member": "Thoudam Debabrata",
+    "Team Member Registration number": 2427030749,
+    "Assigned Processor": "Synopsys ARC Processors"
+  },
+  {
+    "Sno": 123,
+    "Registration No": 2427030746,
+    "Student Name": "PRIYANSHI SHARMA",
+    "Team Member": "Mohak tandon",
+    "Team Member Registration number": 2427030795,
+    "Assigned Processor": "ARM Mali (GPU)"
+  },
+  {
+    "Sno": 124,
+    "Registration No": 2427030753,
+    "Student Name": "YASHVARDHAN SINGH SHEKHAWAT",
+    "Team Member": "Rehan Khan",
+    "Team Member Registration number": 2427030623,
+    "Assigned Processor": "Fujitsu A64FX"
+  },
+  {
+    "Sno": 125,
+    "Registration No": 2427030761,
+    "Student Name": "ARNAV GARG",
+    "Team Member": "Tarang Gupta",
+    "Team Member Registration number": 2427030742,
+    "Assigned Processor": "Google TPU"
+  },
+  {
+    "Sno": 126,
+    "Registration No": 2427030788,
+    "Student Name": "KRITIN SINGH",
+    "Team Member": "Kritin",
+    "Team Member Registration number": 2427030788,
+    "Assigned Processor": "NVIDIA Volta (GPU)"
+  },
+  {
+    "Sno": 127,
+    "Registration No": 2427030793,
+    "Student Name": "DEEP MUNDRA",
+    "Team Member": "Harshit Raj Singh",
+    "Team Member Registration number": 2427030685,
+    "Assigned Processor": "VAX-11"
+  },
+  {
+    "Sno": 128,
+    "Registration No": 2427030795,
+    "Student Name": "MOHAK TANDON",
+    "Team Member": "Priyanshi sharma",
+    "Team Member Registration number": 2427030746,
+    "Assigned Processor": "Imagination PowerVR (GPU)"
+  },
+  {
+    "Sno": 129,
+    "Registration No": 2427010237,
+    "Student Name": "SHRUTI KUMARI",
+    "Team Member": "ALISHA TANDON",
+    "Team Member Registration number": 2427030020,
+    "Assigned Processor": "IBM POWER Architecture"
+  },
+  {
+    "Sno": 130,
+    "Registration No": 2427030008,
+    "Student Name": "YUVIKA AGARWAL",
+    "Team Member": "Sudarshana Chakraborty",
+    "Team Member Registration number": 2427030764,
+    "Assigned Processor": "IBM POWER10"
+  },
+  {
+    "Sno": 131,
+    "Registration No": 2427030020,
+    "Student Name": "ALISHA TANDON",
+    "Team Member": "SHRUTI KUMARI",
+    "Team Member Registration number": 2427010237,
+    "Assigned Processor": "Blackfin (DSP)"
+  },
+  {
+    "Sno": 132,
+    "Registration No": 2427030031,
+    "Student Name": "ANUKALP SHUKLA",
+    "Team Member": "Hardik Tomar",
+    "Team Member Registration number": 2427030069,
+    "Assigned Processor": "Zilog Z80"
+  },
+  {
+    "Sno": 133,
+    "Registration No": 2427030043,
+    "Student Name": "KUSHAGRA SINGH",
+    "Team Member": "N/A",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "Intel 8051 (microcontroller)"
+  },
+  {
+    "Sno": 134,
+    "Registration No": 2427030053,
+    "Student Name": "KARTIKEY MISHRA",
+    "Team Member": "ADITYA JHA",
+    "Team Member Registration number": 2427030675,
+    "Assigned Processor": "TI MSP430 (microcontroller)"
+  },
+  {
+    "Sno": 135,
+    "Registration No": 2427030093,
+    "Student Name": "AKSHARA SINGH",
+    "Team Member": "Ishita Mishra",
+    "Team Member Registration number": 2427030100,
+    "Assigned Processor": "Intel Itanium (IA-64)"
+  },
+  {
+    "Sno": 136,
+    "Registration No": 2427030098,
+    "Student Name": "OMISHA SHUKLA",
+    "Team Member": "Maalvika Gupta",
+    "Team Member Registration number": 2427030116,
+    "Assigned Processor": "PowerPC"
+  },
+  {
+    "Sno": 137,
+    "Registration No": 2427030100,
+    "Student Name": "ISHITA MISHRA",
+    "Team Member": "Akshara Singh",
+    "Team Member Registration number": 2427030093,
+    "Assigned Processor": "ARMv8"
+  },
+  {
+    "Sno": 138,
+    "Registration No": 2427030116,
+    "Student Name": "MAALVIKA GUPTA",
+    "Team Member": "Omisha Shukla",
+    "Team Member Registration number": 2427030098,
+    "Assigned Processor": "NVIDIA Turing (GPU)"
+  },
+  {
+    "Sno": 139,
+    "Registration No": 2427030170,
+    "Student Name": "KRESHA VIJAY JAIN",
+    "Team Member": "Bhawana kandoi",
+    "Team Member Registration number": 2427030619,
+    "Assigned Processor": "CEVA DSPs"
+  },
+  {
+    "Sno": 140,
+    "Registration No": 2427030179,
+    "Student Name": "JAY PRATAP SINGH TOMAR",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "MIPS32 / MIPS64"
+  },
+  {
+    "Sno": 141,
+    "Registration No": 2427030189,
+    "Student Name": "NAYANA KRISHNA K",
+    "Team Member": "Saumya Raj",
+    "Team Member Registration number": 2427030374,
+    "Assigned Processor": "HP PA-RISC"
+  },
+  {
+    "Sno": 142,
+    "Registration No": 2427030210,
+    "Student Name": "SHIVAM KUMAR",
+    "Team Member": "Bhavya yadav",
+    "Team Member Registration number": 2427030455,
+    "Assigned Processor": "Motorola 88000 (RISC)"
+  },
+  {
+    "Sno": 143,
+    "Registration No": 2427030228,
+    "Student Name": "DIVYANSH TUTEJA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Microchip PIC"
+  },
+  {
+    "Sno": 144,
+    "Registration No": 2427030284,
+    "Student Name": "KAAVYA SHAH",
+    "Team Member": "Syed Samad Yaqoob",
+    "Team Member Registration number": 2427030309,
+    "Assigned Processor": "Intel Pentium Pro (P6)"
+  },
+  {
+    "Sno": 145,
+    "Registration No": 2427030285,
+    "Student Name": "KSHITIJ KUMAR",
+    "Team Member": "Tanisha Chopde",
+    "Team Member Registration number": 2427030371,
+    "Assigned Processor": "Renesas RX"
+  },
+  {
+    "Sno": 146,
+    "Registration No": 2427030305,
+    "Student Name": "PRIYANSHU RAJ",
+    "Team Member": "Kushagra Singh",
+    "Team Member Registration number": 2427030078,
+    "Assigned Processor": "Sunway SW26010"
+  },
+  {
+    "Sno": 147,
+    "Registration No": 2427030309,
+    "Student Name": "SYED SAMAD YAQOOB",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "x86 (Intel and AMD processors)"
+  },
+  {
+    "Sno": 148,
+    "Registration No": 2427030335,
+    "Student Name": "ROHIT KUMAR YADAV",
+    "Team Member": "Vinayak Tyagi",
+    "Team Member Registration number": 2427030346,
+    "Assigned Processor": "Intel Core (Skylake)"
+  },
+  {
+    "Sno": 149,
+    "Registration No": 2427030346,
+    "Student Name": "VINAYAK TYAGI",
+    "Team Member": "Rohit Kumar Yadav",
+    "Team Member Registration number": 2427030335,
+    "Assigned Processor": "Centaur CHA (x86 + AI)"
+  },
+  {
+    "Sno": 150,
+    "Registration No": 2427030355,
+    "Student Name": "ARYAN RAJGURU",
+    "Team Member": "Aryan Goyal",
+    "Team Member Registration number": 2427030332,
+    "Assigned Processor": "Oracle SPARC M7"
+  },
+  {
+    "Sno": 151,
+    "Registration No": 2427030371,
+    "Student Name": "TANISHA SHASHIKANT CHOPDE",
+    "Team Member": "Kshitij Kumar",
+    "Team Member Registration number": 2427030285,
+    "Assigned Processor": "NEC SX-9 (vector supercomputer)"
+  },
+  {
+    "Sno": 152,
+    "Registration No": 2427030374,
+    "Student Name": "SAUMYA RAJ",
+    "Team Member": "Nayana Krishna K",
+    "Team Member Registration number": 2427030189,
+    "Assigned Processor": "Transmeta Crusoe"
+  },
+  {
+    "Sno": 153,
+    "Registration No": 2427030376,
+    "Student Name": "SIMRAN DEVKUMAR",
+    "Team Member": "Plaksha Thakur",
+    "Team Member Registration number": 2427030450,
+    "Assigned Processor": "NVIDIA CUDA (GPU)"
+  },
+  {
+    "Sno": 154,
+    "Registration No": 2427030399,
+    "Student Name": "MANNAN GROVER",
+    "Team Member": "Parth Sharma",
+    "Team Member Registration number": 2427030471,
+    "Assigned Processor": "Graphcore IPU"
+  },
+  {
+    "Sno": 155,
+    "Registration No": 2427030402,
+    "Student Name": "SHASHANK PANDEY",
+    "Team Member": "Mukul Goyal",
+    "Team Member Registration number": 2427030416,
+    "Assigned Processor": "MOS Technology 6502"
+  },
+  {
+    "Sno": 156,
+    "Registration No": 2427030415,
+    "Student Name": "PAYAL YADAV",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Atmel AVR (microcontroller)"
+  },
+  {
+    "Sno": 157,
+    "Registration No": 2427030416,
+    "Student Name": "MUKUL GOYAL",
+    "Team Member": "Shashank pandey",
+    "Team Member Registration number": 2427030402,
+    "Assigned Processor": "ARM Cortex-R series"
+  },
+  {
+    "Sno": 158,
+    "Registration No": 2427030426,
+    "Student Name": "ACHINTYA JAIN",
+    "Team Member": "Arindam Sharma",
+    "Team Member Registration number": 2427030837,
+    "Assigned Processor": "IBM z/Architecture"
+  },
+  {
+    "Sno": 159,
+    "Registration No": 2427030447,
+    "Student Name": "DEVANK DHARMENDRA AGRAWAL",
+    "Team Member": "Angad Singh",
+    "Team Member Registration number": 2427030441,
+    "Assigned Processor": "Sun UltraSPARC"
+  },
+  {
+    "Sno": 160,
+    "Registration No": 2427030471,
+    "Student Name": "PARTH SHARMA",
+    "Team Member": "Mannan Grover",
+    "Team Member Registration number": 2427030399,
+    "Assigned Processor": "ARM Neoverse"
+  },
+  {
+    "Sno": 161,
+    "Registration No": 2427030489,
+    "Student Name": "AMRUTA PATIL",
+    "Team Member": "Treshaa Pathak",
+    "Team Member Registration number": 2427030509,
+    "Assigned Processor": "SPARC"
+  },
+  {
+    "Sno": 162,
+    "Registration No": 2427030493,
+    "Student Name": "KRRISH AJMERA",
+    "Team Member": "Bhavik yadav",
+    "Team Member Registration number": 2427030678,
+    "Assigned Processor": "AMD Ryzen (Zen)"
+  },
+  {
+    "Sno": 163,
+    "Registration No": 2427030496,
+    "Student Name": "VEDIKA TAILOR",
+    "Team Member": "Aniket Singh",
+    "Team Member Registration number": 2427030693,
+    "Assigned Processor": "Cray-1"
+  },
+  {
+    "Sno": 164,
+    "Registration No": 2427030517,
+    "Student Name": "KESHAV KHANDELWAL",
+    "Team Member": "Niranjan Rathore",
+    "Team Member Registration number": 2427030524,
+    "Assigned Processor": "RISC-V (RV64GC)"
+  },
+  {
+    "Sno": 165,
+    "Registration No": 2427030524,
+    "Student Name": "NIRANJAN RATHORE",
+    "Team Member": "Keshav Khandelwal",
+    "Team Member Registration number": 2427030517,
+    "Assigned Processor": "AMD RDNA (GPU)"
+  },
+  {
+    "Sno": 166,
+    "Registration No": 2427030526,
+    "Student Name": "VARUN RATHORE",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "DEC Alpha"
+  },
+  {
+    "Sno": 167,
+    "Registration No": 2427030532,
+    "Student Name": "KRITIKA CHARUDUTT BUTALA",
+    "Team Member": "NA",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "Elbrus 2000"
+  },
+  {
+    "Sno": 168,
+    "Registration No": 2427030540,
+    "Student Name": "GAUTAM SAHU",
+    "Team Member": "Gautam Giriraj Shukla",
+    "Team Member Registration number": 2427030515,
+    "Assigned Processor": "Qualcomm Snapdragon (mobile)"
+  },
+  {
+    "Sno": 169,
+    "Registration No": 2427030553,
+    "Student Name": "PRAGYA MRIDU",
+    "Team Member": "Ahana Bajpai",
+    "Team Member Registration number": 2427030513,
+    "Assigned Processor": "IBM System/360"
+  },
+  {
+    "Sno": 170,
+    "Registration No": 2427030567,
+    "Student Name": "PRATISHTHA BARMOTA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "SiFive Freedom (RISC-V)"
+  },
+  {
+    "Sno": 171,
+    "Registration No": 2427030571,
+    "Student Name": "UTKARSH VOHRA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Digital PDP-11"
+  },
+  {
+    "Sno": 172,
+    "Registration No": 2427030601,
+    "Student Name": "SAMRIDDHI SRIVASTAVA",
+    "Team Member": "Kashish ranjan",
+    "Team Member Registration number": 2427030618,
+    "Assigned Processor": "Intel Alder Lake (hybrid)"
+  },
+  {
+    "Sno": 173,
+    "Registration No": 2427030604,
+    "Student Name": "CHINMAYA",
+    "Team Member": "SOUVIK SAMANTA",
+    "Team Member Registration number": 2427030613,
+    "Assigned Processor": "AMD Epyc (server)"
+  },
+  {
+    "Sno": 174,
+    "Registration No": 2427030613,
+    "Student Name": "SOUVIK SAMANTA",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Intel Xeon Phi (Many-core)"
+  },
+  {
+    "Sno": 175,
+    "Registration No": 2427030619,
+    "Student Name": "BHAWANA KANDOI",
+    "Team Member": "Kresha vijay jain",
+    "Team Member Registration number": 2427030170,
+    "Assigned Processor": "Motorola 68000"
+  },
+  {
+    "Sno": 176,
+    "Registration No": 2427030675,
+    "Student Name": "ADITYA JHA",
+    "Team Member": "Kartikey Mishra",
+    "Team Member Registration number": 2427030053,
+    "Assigned Processor": "Intel 4004"
+  },
+  {
+    "Sno": 177,
+    "Registration No": 2427030678,
+    "Student Name": "BHAVIK YADAV",
+    "Team Member": "Krrish Ajmera",
+    "Team Member Registration number": 2427030493,
+    "Assigned Processor": "Andes Technology RISC-V Cores"
+  },
+  {
+    "Sno": 178,
+    "Registration No": 2427030680,
+    "Student Name": "HARSH GUPTA",
+    "Team Member": "Harshit Arya",
+    "Team Member Registration number": 2427030665,
+    "Assigned Processor": "Unisys ClearPath MCP"
+  },
+  {
+    "Sno": 179,
+    "Registration No": 2427030685,
+    "Student Name": "HARSHIT RAJ SINGH",
+    "Team Member": "Deep Mundra",
+    "Team Member Registration number": 2427030793,
+    "Assigned Processor": "ARM Cortex-M series"
+  },
+  {
+    "Sno": 180,
+    "Registration No": 2427030693,
+    "Student Name": "ANIKET SINGH",
+    "Team Member": "Vedika Tailor",
+    "Team Member Registration number": 2427030496,
+    "Assigned Processor": "AMD K6/K7"
+  },
+  {
+    "Sno": 181,
+    "Registration No": 2427030706,
+    "Student Name": "ANVI TIWARI",
+    "Team Member": "Amritansh Srivastava",
+    "Team Member Registration number": 2427030667,
+    "Assigned Processor": "Apple M1/M2 (ARM-based SoC)"
+  },
+  {
+    "Sno": 182,
+    "Registration No": 2427030727,
+    "Student Name": "SHOURYA VIJAYVARGIYA",
+    "Team Member": "Aayush Saxena",
+    "Team Member Registration number": 2427030739,
+    "Assigned Processor": "AMD Zen 4 (Ryzen 7000)"
+  },
+  {
+    "Sno": 183,
+    "Registration No": 2427030739,
+    "Student Name": "AAYUSH SAXENA",
+    "Team Member": "Shourya Vijayvargiya",
+    "Team Member Registration number": 2427030727,
+    "Assigned Processor": "Cerebras WSE"
+  },
+  {
+    "Sno": 184,
+    "Registration No": 2427030742,
+    "Student Name": "TARANG GUPTA",
+    "Team Member": "Arnav Garg",
+    "Team Member Registration number": 2427030761,
+    "Assigned Processor": "Adapteva Epiphany (Many-core)"
+  },
+  {
+    "Sno": 185,
+    "Registration No": 2427030759,
+    "Student Name": "VRINDA KHANDELWAL",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Mill architecture"
+  },
+  {
+    "Sno": 186,
+    "Registration No": 2427030764,
+    "Student Name": "SUDARSHANA CHAKRABORTY",
+    "Team Member": "Yuvika Agarwal",
+    "Team Member Registration number": 2427030008,
+    "Assigned Processor": "Synopsys ARC Processors"
+  },
+  {
+    "Sno": 187,
+    "Registration No": 2427030784,
+    "Student Name": "ATHARVA GOENKA",
+    "Team Member": "Team D-code",
+    "Team Member Registration number": 2427030809,
+    "Assigned Processor": "ARM Mali (GPU)"
+  },
+  {
+    "Sno": 188,
+    "Registration No": 2427030801,
+    "Student Name": "SAKSHAT JAIN",
+    "Team Member": "Pratishtha Barmota",
+    "Team Member Registration number": 2427030567,
+    "Assigned Processor": "Motorola 88000 (RISC)"
+  },
+  {
+    "Sno": 189,
+    "Registration No": 2427030809,
+    "Student Name": "AARAV",
+    "Team Member": "D-code",
+    "Team Member Registration number": 2427030784,
+    "Assigned Processor": "Microchip PIC"
+  },
+  {
+    "Sno": 190,
+    "Registration No": 2427030833,
+    "Student Name": "RISHI KANT",
+    "Team Member": "NONE",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "Intel Pentium Pro (P6)"
+  },
+  {
+    "Sno": 191,
+    "Registration No": 2427030837,
+    "Student Name": "ARINDAM SHARMA",
+    "Team Member": "Achintya Jain",
+    "Team Member Registration number": 2427030426,
+    "Assigned Processor": "Renesas RX"
+  },
+  {
+    "Sno": 192,
+    "Registration No": 2427030838,
+    "Student Name": "MOHAMMED ALI SHOAIB BADSHAH",
+    "Team Member": "N.A",
+    "Team Member Registration number": 0,
+    "Assigned Processor": "Sunway SW26010"
+  },
+  {
+    "Sno": 193,
+    "Registration No": 2427030384,
+    "Student Name": "ARNAVV P BHATI",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "x86 (Intel and AMD processors)"
+  },
+  {
+    "Sno": 194,
+    "Registration No": 2427030509,
+    "Student Name": "TRESHAA PATHAK",
+    "Team Member": "Amruta Patil",
+    "Team Member Registration number": 2427030489,
+    "Assigned Processor": "Intel Core (Skylake)"
+  },
+  {
+    "Sno": 195,
+    "Registration No": 2427030590,
+    "Student Name": "ARYAN RAJ",
+    "Team Member": "Souritra Mukherjee",
+    "Team Member Registration number": 2427030587,
+    "Assigned Processor": "Centaur CHA (x86 + AI)"
+  },
+  {
+    "Sno": 196,
+    "Registration No": 2427030631,
+    "Student Name": "VEDANT YADAV",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "Unisys ClearPath MCP"
+  },
+  {
+    "Sno": 197,
+    "Registration No": 2427030829,
+    "Student Name": "ADITYA HANS",
+    "Team Member": null,
+    "Team Member Registration number": null,
+    "Assigned Processor": "DEC Alpha"
+  }
+            ];
+            
+            // --- Search Functionality ---
+            const searchInput = document.getElementById('search-input');
+            const resultContainer = document.getElementById('search-result-container');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
+
+            function handleSearch() {
+                const query = searchInput.value.trim();
+                resultContainer.innerHTML = ''; 
+
+                if (query === "") {
+                    return;
+                }
+                
+                const foundRecord = studentData.find(student => {
+                    const regNo = student['Registration No'].toString();
+                    const teamRegNo = student['Team Member Registration number'] ? student['Team Member Registration number'].toString() : null;
+                    return regNo === query || teamRegNo === query;
+                });
+
+                if (foundRecord) {
+                    let membersDisplay = foundRecord['Student Name'];
+                    let regNosDisplay = foundRecord['Registration No'];
+
+                    if (foundRecord['Team Member'] && foundRecord['Team Member Registration number']) {
+                        membersDisplay += ` & ${foundRecord['Team Member']}`;
+                        regNosDisplay += `, ${foundRecord['Team Member Registration number']}`;
+                    }
+
+                    const resultCard = `
+                        <div id="search-result-card" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md shadow-md fade-in">
+                            <p class="font-bold">Group Members:</p>
+                            <p>${membersDisplay} (${regNosDisplay})</p>
+                            <p class="font-bold mt-2">Assigned Processor:</p>
+                            <p class="text-lg font-semibold">${foundRecord['Assigned Processor']}</p>
+                        </div>
+                    `;
+                    resultContainer.innerHTML = resultCard;
+
+                } else {
+                     const notFoundCard = `
+                        <div id="search-result-card" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-md fade-in">
+                            <p class="font-semibold">Registration number not found. Please check the number and try again.</p>
+                        </div>
+                    `;
+                    resultContainer.innerHTML = notFoundCard;
+                }
+            }
+
+            function clearSearch() {
+                searchInput.value = "";
+                resultContainer.innerHTML = '';
+            }
+
+            // Event Listeners
+            searchInput.addEventListener('keyup', handleSearch);
+            clearSearchBtn.addEventListener('click', clearSearch);
+
+            // --- UI Functionality for TABS and ACCORDION ---
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('tab-inactive');
+                    });
+                    button.classList.add('tab-active');
+                    button.classList.remove('tab-inactive');
+                    tabContents.forEach(content => {
+                        content.classList[content.id === tabId ? 'remove' : 'add']('hidden');
+                    });
+                });
+            });
+
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('svg');
+                    const isOpen = content.style.maxHeight;
+                    document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                    document.querySelectorAll('.accordion-header svg').forEach(i => i.style.transform = 'rotate(0deg)');
+                    if (!isOpen) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
