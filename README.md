@@ -1,7 +1,8 @@
 COA Assignment Portal - Student Guide
 Welcome, Students!
-Website: https://adityasinha-1988.github.io/COA_CWS/
 Welcome to the official portal for your Computer Organization and Architecture (CSE2103) assignment. This page has all the information you need to complete your case study and simulation project. Please read all instructions carefully.
+
+You can access the live assignment portal here: https://adityasinha-1988.github.io/COA_CWS/
 
 Assignment Overview
 This project is worth a total of 10 marks and is divided into two main parts. The goal is to give you a deep, practical understanding of a real-world processor architecture.
@@ -19,7 +20,7 @@ Code Demonstration: A live screen recording where you explain your assembly code
 How to Use This Portal
 Follow these simple steps to get started:
 
-Find Your Topic: Use the search bar at the top of the page. Enter your registration number to find your group members and your assigned processor.
+Find Your Topic: Use the search bar at the top of the portal. Enter your registration number to find your group members and your assigned processor.
 
 Read the Instructions: Click on the "Part 1" and "Part 2" tabs to see the detailed instructions, guiding questions for the presentation, and a list of recommended simulators.
 
