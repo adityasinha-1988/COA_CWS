@@ -1,44 +1,52 @@
-COA Assignment Portal - Student Guide
-Welcome, Students!
-Welcome to the official portal for your Computer Organization and Architecture (CSE2103) assignment. This page has all the information you need to complete your case study and simulation project. Please read all instructions carefully.
+🚀 COA Assignment Portal - Student Guide 🚀
+Welcome to the official portal for your Computer Organization and Architecture (CSE2103) assignment. This page contains all the information you need to successfully complete your case study and simulation project. Please read all instructions carefully.
 
-You can access the live assignment portal here: https://adityasinha-1988.github.io/COA_CWS/
+📍 Live Portal Link
+You can access the live, interactive assignment portal here:
 
-Assignment Overview
-This project is worth a total of 10 marks and is divided into two main parts. The goal is to give you a deep, practical understanding of a real-world processor architecture.
+https://adityasinha-1988.github.io/COA_CWS/
 
-Part 1: Architecture Simulation (5 Marks)
-You will be required to write a simple assembly language program for your assigned processor. The program should perform a basic task like calculating a factorial or generating a Fibonacci sequence. The goal is to get hands-on experience with the instruction set of your architecture.
+📝 Assignment Overview
+This project is designed to give you a deep, practical understanding of a real-world processor architecture. The assignment is worth a total of 10 marks.
 
-Part 2: Video Presentation (5 Marks)
-You will create a 7-10 minute video that has two sections:
+Part
 
-Case Study Presentation: A presentation explaining the key features, design, and history of your assigned processor.
+Task Description
 
-Code Demonstration: A live screen recording where you explain your assembly code and run it in a simulator to show the final output.
+Marks
 
-How to Use This Portal
+Part 1: Architecture Simulation
+
+Write and simulate a simple assembly program (Factorial or Fibonacci).
+
+5
+
+Part 2: Video Presentation
+
+Create a 7-10 minute video covering the case study and code demonstration.
+
+5
+
+🧭 How to Use This Portal
 Follow these simple steps to get started:
 
-Find Your Topic: Use the search bar at the top of the portal. Enter your registration number to find your group members and your assigned processor.
+Find Your Topic: Go to the live portal and use the search bar. Enter your registration number to find your group members and assigned processor.
 
-Read the Instructions: Click on the "Part 1" and "Part 2" tabs to see the detailed instructions, guiding questions for the presentation, and a list of recommended simulators.
+Read the Instructions: On the portal, click on the "Part 1" and "Part 2" tabs to see the detailed instructions, guiding questions for the presentation, and a list of recommended simulators.
 
-Check Submission Rules: Pay close attention to the submission rules, especially for the video. Make sure your video link works and has the correct access permissions.
+Check Submission Rules: Pay close attention to the submission rules listed below, especially for the video.
 
-Submit Your Work: Near the deadline, a link to a Microsoft Form will be activated in the "Submission Portal" section. You will use this form to upload your code and video link.
+Submit Your Work: Near the deadline, a link to a Microsoft Form will be activated in the "Submission Portal" section on the website. You will use this form to upload your code and video link.
 
-A preview of the assignment portal's main interface.
+⚠️ Important Submission Rules
+Video Content: Your video must have two parts: the case study presentation AND the code demonstration.
 
-Important Submission Rules
-Your video must clearly show the faces of all team members.
+Visibility: The faces of all team members must be clearly visible during the presentation.
 
-Audio must be clear, without any background noise.
+Clarity: Audio must be clear, and the screen share of your code/presentation must be high-quality and easy to read.
 
-The screen share of your code and presentation must be high quality and easy to read.
+Link Access: The video link you submit must work. Please set the sharing permissions to "Anyone with the link can view."
 
-The video link you submit must work. Set the sharing permissions to "Anyone with the link can view."
-
-Marks will be deducted for any technical issues, so please double-check your submission.
+Penalty: Marks will be strictly deducted for any technical issues (e.g., broken links, access problems, poor audio/video). It is your responsibility to double-check everything before submission.
 
 Good luck with your assignment!
