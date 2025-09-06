@@ -158,9 +158,13 @@
                     <!-- Part 2 Content -->
                     <div id="part2" class="tab-content hidden">
                         <h3 class="text-2xl font-bold mb-4">Presentation Task (5 Marks)</h3>
-                        <p class="text-slate-600 mb-6">Prepare and record a <strong>7-10 minute video presentation</strong> summarizing your case study of the assigned architecture. Your presentation should be clear, concise, and cover the key points listed below.</p>
+                        <p class="text-slate-600 mb-6">
+                            Prepare and record a <strong>7-10 minute video presentation</strong>. This video must include two parts: 
+                            <br><strong>1. Case Study Presentation:</strong> A summary of your research on the assigned architecture, covering the points below.
+                            <br><strong>2. Code Demonstration:</strong> A live demo where you explain your assembly code and run it in the simulator to show the final output.
+                        </p>
                         
-                        <h4 class="text-xl font-bold mb-4">Guiding Questions</h4>
+                        <h4 class="text-xl font-bold mb-4">Guiding Questions for Case Study</h4>
                         <div id="accordion-container" class="space-y-2">
                             <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>1. Architecture Overview</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">What are the key features and design principles (RISC, CISC, VLIW, etc.)? What were its target applications?</p></div></div>
                             <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>2. Instruction Set Architecture (ISA)</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Briefly describe instruction formats and addressing modes. Highlight one or two unique or interesting instructions.</p></div></div>
@@ -169,11 +173,36 @@
                             <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>5. Specialized Features & Parallelism</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Does it support multicore processing? Does it have specialized instructions (e.g., SIMD, AI, virtualization)?</p></div></div>
                             <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>6. Historical Significance & Comparison</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">What is its historical importance? Briefly compare it to one other architecture in terms of performance, power, or market.</p></div></div>
                         </div>
+                        
+                        <h4 class="text-xl font-bold mt-8 mb-4 text-red-600">Video Submission - Important Rules</h4>
+                        <ul class="list-disc list-inside space-y-3 text-slate-700 bg-red-50 p-4 rounded-lg border border-red-200">
+                            <li><strong>Video Content:</strong> The video must contain two parts: your case study presentation AND a screen share of you explaining and running your simulation code.</li>
+                            <li><strong>Visibility:</strong> Video quality must be high. Screen share (code/presentation) and the faces of <strong>both team members must be clearly visible</strong> throughout the presentation.</li>
+                            <li><strong>Audio:</strong> Ensure your audio is clear and free of any background noise or disturbances. A good microphone is recommended.</li>
+                            <li><strong>Video Link Access:</strong> The video link (e.g., YouTube, Google Drive) you submit <strong>must not have any access issues</strong>. Please set permissions to "Anyone with the link can view". Broken or private links will be marked zero.</li>
+                            <li><strong class="text-red-700">Penalty:</strong> Marks will be strictly deducted for any technical glitches (poor audio/video, broken links, access issues). It is your responsibility to double-check everything before submission.</li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
         </section>
         
+        <!-- Submission Portal Section -->
+        <section class="my-12 md:my-16 fade-in" style="animation-delay: 0.6s;">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Submission Portal</h2>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <p class="text-slate-600 mb-6">
+                        The submission for this assignment will be through a Microsoft Form. You will need to submit your final assembly code file and the working link to your video presentation. The form link will be activated here closer to the submission deadline.
+                    </p>
+                    <button id="ms-form-btn" class="w-full sm:w-auto bg-green-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-green-600 transition duration-300 cursor-not-allowed opacity-50" disabled>
+                        Submission Form (Link will be active soon)
+                    </button>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-white mt-12">
@@ -382,8 +411,8 @@
               {"Sno": 193, "Registration No": 2427030384, "Student Name": "ARNAVV P BHATI", "Team Member": null, "Team Member Registration number": null, "Assigned Processor": "x86 (Intel and AMD processors)"},
               {"Sno": 194, "Registration No": 2427030509, "Student Name": "TRESHAA PATHAK", "Team Member": "Amruta Patil", "Team Member Registration number": 2427030489, "Assigned Processor": "Intel Core (Skylake)"},
               {"Sno": 195, "Registration No": 2427030590, "Student Name": "ARYAN RAJ", "Team Member": "Souritra Mukherjee", "Team Member Registration number": 2427030587, "Assigned Processor": "Centaur CHA (x86 + AI)"}
-            ]
-            
+            ];
+
             const searchInput = document.getElementById('search-input');
             const resultContainer = document.getElementById('search-result-container');
             const clearSearchBtn = document.getElementById('clear-search-btn');
@@ -401,7 +430,6 @@
                     const teamRegNoValue = student['Team Member Registration number'];
                     const teamRegNo = teamRegNoValue ? teamRegNoValue.toString() : '';
                     
-                    // Handle comma-separated team registration numbers
                     const teamRegNos = teamRegNo.split(',').map(s => s.trim());
 
                     return regNo === query || teamRegNos.includes(query);
@@ -414,10 +442,9 @@
                     const teamMemberName = foundRecord['Team Member'];
                     if (teamMemberName && typeof teamMemberName === 'string' && !["NA", "N/A", "NONE", "NULL", "-"].includes(teamMemberName.toUpperCase())) {
                          membersDisplay += ` & ${teamMemberName}`;
-                         // Display all team registration numbers if they are in a comma-separated string
                          if(foundRecord['Team Member Registration number'] && foundRecord['Team Member Registration number'].toString().includes(',')) {
                             regNosDisplay += `, ${foundRecord['Team Member Registration number']}`;
-                         } else if (foundRecord['Team Member Registration number']) {
+                         } else if (foundRecord['Team Member Registration number'] && foundRecord['Team Member Registration number'] != 0) {
                              regNosDisplay += `, ${foundRecord['Team Member Registration number']}`;
                          }
                     }
